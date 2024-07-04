@@ -51,7 +51,7 @@
      扣子智能体 API Java SDK 是对扣子智能体的API进行了封装，方便Java开发者接入系统调用。
 </h3>
 
-<div align="center"><b>您是第<img src="https://profile-counter.glitch.me/coze-sdk-java/count.svg"></img>个访问YuanQi-Sdk-Java~</b></div>
+<div align="center"><b>您是第<img src="https://profile-counter.glitch.me/coze-sdk-java/count.svg"></img>个访问COZE-SDK-JAVA~</b></div>
 
 # 接入方式
 
