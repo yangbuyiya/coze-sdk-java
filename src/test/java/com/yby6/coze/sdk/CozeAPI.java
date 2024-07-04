@@ -33,13 +33,16 @@ import java.util.concurrent.CountDownLatch;
  * coze api
  *
  * @author yangs
- * @date 2024/07/04
+ * Create By 2024/07/04
  */
 @Slf4j
 public class CozeAPI {
     
     private CoZeSession coZeSession;
     
+    /**
+     * 测试会话工厂
+     */
     @Before
     public void test_session_Factory() {
         // 1. 配置文件
@@ -54,6 +57,9 @@ public class CozeAPI {
         log.info("openAiSession:{}", coZeSession);
     }
     
+    /**
+     * 测试聊天完成
+     */
     @Test
     public void test_chat_completions() {
         // 1. 创建参数

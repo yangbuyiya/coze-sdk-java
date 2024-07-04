@@ -69,11 +69,14 @@ public class Constants {
      */
     @Getter
     public enum Type {
-
+        
         /**
-         * 默认文本问答类型
+         * 文本
          */
         TEXT("text"),
+        /**
+         * img
+         */
         IMG("file_url")
         ;
 

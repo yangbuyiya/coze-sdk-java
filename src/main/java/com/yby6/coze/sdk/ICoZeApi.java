@@ -24,10 +24,12 @@ import retrofit2.http.POST;
  * Create By 2024/07/04
  */
 public interface ICoZeApi {
-
-    // https://api.coze.cn/open_api/v2/chat
+    
+    /**
+     * v1聊天完成
+     */
     String v1_chat_completions = "v2/chat";
-
+    
     /**
      * 问答智能体
      *

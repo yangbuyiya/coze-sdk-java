@@ -28,7 +28,7 @@
     <!-- 开发者信息 -->
     <developers>
         <developer>
-            <name>杨不易呀</name>
+            <name>Yangbuyiya</name>
             <email>1692700664@qq.com</email>
             <url>https://yby6.com</url>
             <organization>YangBuYi</organization>
@@ -55,24 +55,17 @@
     </licenses>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.plugin.validation>VERBOSE</maven.plugin.validation>
         <java.version>17</java.version>
-        <!-- SLF4J (Simple Logging Facade for Java) 是一个简单的日志门面，允许使用不同的日志框架 -->
         <slf4j.version>2.0.6</slf4j.version>
-        <!-- Retrofit 是一个用于将HTTP API转换为Java接口的类型安全的HTTP客户端 -->
         <retrofit2.version>2.9.0</retrofit2.version>
-        <!-- Jackson 是一个用于处理JSON数据的流行库，jackson-databind 是其核心组件之一 -->
         <jackson.version>2.14.0-rc1</jackson.version>
-        <!-- Hutool 是一个小而全的Java工具类库，提供了许多实用的功能 -->
         <hutool.version>5.8.25</hutool.version>
-        <!-- OkHttp 是一个高效的HTTP客户端，支持HTTP/2，OkHttp3 是其第三个主要版本 -->
         <okhttp3.version>3.14.9</okhttp3.version>
-        <!-- JUnit 是一个流行的Java单元测试框架，用于编写和运行可重复的测试 -->
         <junit.version>4.13.2</junit.version>
-        <!-- JetBrains Annotations 是用于Java代码中的注释库，提供了静态代码分析支持 -->
         <annotations.version>23.0.0</annotations.version>
-        <!-- JTokkit 是一个用于Java的Tokenizer库，常用于处理文本分析和自然语言处理任务 -->
         <jtokkit.version>0.2.0</jtokkit.version>
-        <!-- Lombok 是一个Java库，通过注解简化Java代码，减少样板代码 -->
         <lombok.version>1.18.24</lombok.version>
     </properties>
 
@@ -178,6 +171,7 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <!-- 中央仓库 -->
@@ -212,6 +206,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.6.3</version>
+                <configuration>
+                    <source>17</source>
+                    <encoding>UTF-8</encoding>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>

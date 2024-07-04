@@ -42,36 +42,75 @@ public class Message implements Serializable {
     @JsonProperty("content_type")
     private String contentType;
     
+    /**
+     * 消息
+     *
+     * @param builder 建设者
+     */
     private Message(Builder builder) {
         this.role = builder.role;
         this.content = builder.content;
     }
     
+    /**
+     * 建设者
+     *
+     * @return {@link Builder}
+     */
     public static Builder builder() {
         return new Builder();
     }
     
     /**
      * 建造者模式
+     *
+     * @author yangs
+     * Create By 2024/07/04
      */
     public static final class Builder {
         
+        /**
+         * 角色
+         */
         private String role;
+        /**
+         * 所容纳之物
+         */
         private String content;
         
+        /**
+         * 建设者
+         */
         public Builder() {
         }
         
+        /**
+         * 角色
+         *
+         * @param role 角色
+         * @return {@link Builder}
+         */
         public Builder role(Constants.Role role) {
             this.role = role.getCode();
             return this;
         }
         
+        /**
+         * 所容纳之物
+         *
+         * @param content 所容纳之物
+         * @return {@link Builder}
+         */
         public Builder content(String content) {
             this.content = content;
             return this;
         }
         
+        /**
+         * 建筑
+         *
+         * @return {@link Message}
+         */
         public Message build() {
             return new Message(this);
         }
