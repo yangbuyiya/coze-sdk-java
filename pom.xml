@@ -33,6 +33,9 @@
             <url>https://yby6.com</url>
             <organization>YangBuYi</organization>
             <organizationUrl>https://bento.me/yby6</organizationUrl>
+            <roles>
+                <role>lead</role>
+            </roles>
         </developer>
     </developers>
 
@@ -67,6 +70,8 @@
         <junit.version>4.13.2</junit.version>
         <!-- JetBrains Annotations 是用于Java代码中的注释库，提供了静态代码分析支持 -->
         <annotations.version>23.0.0</annotations.version>
+        <!-- JTokkit 是一个用于Java的Tokenizer库，常用于处理文本分析和自然语言处理任务 -->
+        <jtokkit.version>0.2.0</jtokkit.version>
         <!-- Lombok 是一个Java库，通过注解简化Java代码，减少样板代码 -->
         <lombok.version>1.18.24</lombok.version>
     </properties>
@@ -139,6 +144,12 @@
             <artifactId>annotations</artifactId>
             <version>${annotations.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <!-- JTokkit 是一个用于处理文本分析和自然语言处理任务的 Java 库 -->
+        <dependency>
+            <groupId>com.knuddels</groupId>
+            <artifactId>jtokkit</artifactId>
+            <version>${jtokkit.version}</version>
         </dependency>
         <!-- Lombok 是一个 Java 库，通过注解简化 Java 代码，减少样板代码 -->
         <dependency>

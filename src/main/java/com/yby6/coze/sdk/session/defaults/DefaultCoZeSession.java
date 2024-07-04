@@ -9,12 +9,20 @@
 package com.yby6.coze.sdk.session.defaults;
 
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.http.ContentType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yby6.coze.sdk.ICoZeApi;
+import com.yby6.coze.sdk.common.Constants;
 import com.yby6.coze.sdk.domain.CoZeCompletionRequest;
 import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
 import com.yby6.coze.sdk.session.CoZeConfiguration;
 import com.yby6.coze.sdk.session.CoZeSession;
-import okhttp3.sse.EventSource;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.sse.*;
+import com.fasterxml.jackson.core.*;
 
 /**
  * 默认的 CoZe 会话实现CoZeSession
@@ -26,7 +34,7 @@ public class DefaultCoZeSession implements CoZeSession {
 
 
     /**
-     * 配置信息
+     * 默认配置信息
      */
     private final CoZeConfiguration cozeConfiguration;
 
@@ -55,5 +63,54 @@ public class DefaultCoZeSession implements CoZeSession {
     public CoZeCompletionResponse completions(CoZeCompletionRequest cozeCompletionRequest) {
         return this.cozeApi.completions(cozeCompletionRequest).blockingGet();
     }
-
+    
+    /**
+     * 聊天完成
+     *
+     * @param cozeCompletionRequest coze完成请求
+     * @param eventSourceListener   事件源侦听器
+     * @return {@link EventSource}
+     * @throws JsonProcessingException json处理异常
+     */
+    @Override
+    public EventSource chatCompletions(CoZeCompletionRequest cozeCompletionRequest, EventSourceListener eventSourceListener) throws JsonProcessingException {
+        return chatCompletions(Constants.NULL, Constants.NULL, cozeCompletionRequest, eventSourceListener);
+    }
+    
+    
+    /**
+     * 问答模型扣子智能体AI
+     *
+     * @param apiHostByUser         用户提供api主机
+     * @param apiKeyByUser          用户提供api密钥
+     * @param cozeCompletionRequest coze完成请求
+     * @param eventSourceListener   事件源侦听器
+     * @return {@link EventSource}
+     * @throws JsonProcessingException json处理异常
+     */
+    @Override
+    public EventSource chatCompletions(String apiHostByUser, String apiKeyByUser, CoZeCompletionRequest cozeCompletionRequest, EventSourceListener eventSourceListener) throws JsonProcessingException {
+        // 当前为流式模式，如果为false则抛出异常
+        Assert.isTrue(cozeCompletionRequest.getStream(), "illegal parameter stream is false!");
+        
+        // 1. 先判断用户传递的 Host、Key 是否为空，为空则使用默认配置信息
+        // 动态设置 Host、Key，便于用户传递自己的信息
+        String apiHost = Constants.NULL.equals(apiHostByUser) ? cozeConfiguration.getApiHost() : apiHostByUser;
+        String apiKey = Constants.NULL.equals(apiKeyByUser) ? cozeConfiguration.getApiKey() : apiKeyByUser;
+        
+        // 2. 构建请求信息，并设置请求头 Authorization
+        Request request = new Request.Builder()
+                // 通过 IYuanQiApi 配置的 POST 接口，用这样的方式从统一的地方获取配置信息
+                .url(apiHost.concat(ICoZeApi.v1_chat_completions))
+                .addHeader(Constants.AUTHORIZATION, apiKey)
+                // 封装请求参数信息
+                .post(RequestBody.create(MediaType.parse(ContentType.JSON.getValue()), new ObjectMapper()
+                        .writeValueAsString(cozeCompletionRequest)))
+                .build();
+        
+        // 返回结果信息；EventSource 对象可以取消应答
+        return factory.newEventSource(request, eventSourceListener);
+    }
+    
+    
 }

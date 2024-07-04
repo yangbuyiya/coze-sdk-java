@@ -15,7 +15,6 @@ import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
-import java.util.concurrent.CompletableFuture;
 
 /**
  * 扣子会话
@@ -34,6 +33,28 @@ public interface CoZeSession {
      * @return {@link CoZeCompletionResponse}
      */
     CoZeCompletionResponse completions(CoZeCompletionRequest cozeCompletionRequest);
-
-
+    
+    
+    /**
+     * 简单问答 - 流式
+     *
+     * @param cozeCompletionRequest coze完成请求
+     * @param eventSourceListener   事件源侦听器
+     * @return {@link EventSource}
+     * @throws JsonProcessingException json处理异常
+     */
+    EventSource chatCompletions(CoZeCompletionRequest cozeCompletionRequest, EventSourceListener eventSourceListener) throws JsonProcessingException;
+    
+    
+    /**
+     * 简单问答 - 流式 - 自定义apiHost和apiKey
+     *
+     * @param apiHostByUser         用户提供api主机
+     * @param apiKeyByUser          用户提供api密钥
+     * @param cozeCompletionRequest coze完成请求
+     * @param eventSourceListener   事件源侦听器
+     * @return {@link EventSource}
+     * @throws JsonProcessingException json处理异常
+     */
+    EventSource chatCompletions(String apiHostByUser, String apiKeyByUser, CoZeCompletionRequest cozeCompletionRequest, EventSourceListener eventSourceListener) throws JsonProcessingException;
 }

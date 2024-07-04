@@ -5,15 +5,16 @@
  *
  * yangbuyi Copyright (c) https://yby6.com 2024.
  */
-package com.yby6.coze.sdk.session;
+package com.yby6.coze.sdk.core;
 
 import lombok.Getter;
 
 /**
  * Api密钥提供程序 Authorization Key Provider
+ *
  * <p>
- *     如果你需要在程序当中更新API密钥，可以使用{@link CoZeApiKeyProvider#setApiKey(String)}方法
- *     如果你需要获取API密钥，可以使用{@link CoZeApiKeyProvider#getApiKey()}方法
+ *     如果你需要在程序当中更新API密钥，可以使用{@link CoZeApiKeyProvider#setApiKey(String)}方法 <br />
+ *     如果你需要获取API密钥，可以使用{@link CoZeApiKeyProvider#getApiKey()}方法 <br />
  *     请注意，这个类是线程安全的
  * </p>
  *

@@ -63,7 +63,12 @@ public class CoZeConfiguration {
      * BODY;
      */
     private HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
-
+    
+    /**
+     * 创建请求工厂
+     *
+     * @return {@link EventSource.Factory}
+     */
     public EventSource.Factory createRequestFactory() {
         return EventSources.createFactory(okHttpClient);
     }
