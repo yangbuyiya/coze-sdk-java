@@ -82,12 +82,12 @@ implementation group: 'com.yby6.coze', name: 'coze-sdk-java', version: '${last}'
 @Before
 public void test_session_Factory() {
     // 1. 配置文件
-    CoZeConfiguration yuanQiConfiguration = new CoZeConfiguration();
-    yuanQiConfiguration.setApiHost("https://api.coze.cn/open_api/");
-    yuanQiConfiguration.setApiKey("Bearer 你的APIKEY");
-    yuanQiConfiguration.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+    CoZeConfiguration cozeConfiguration = new CoZeConfiguration();
+    cozeConfiguration.setApiHost("https://api.coze.cn/open_api/");
+    cozeConfiguration.setApiKey("Bearer 你的APIKEY");
+    cozeConfiguration.setLevel(HttpLoggingInterceptor.Level.HEADERS);
     // 2. 会话工厂
-    DefaultCoZeSessionFactory factory = new DefaultCoZeSessionFactory(yuanQiConfiguration);
+    DefaultCoZeSessionFactory factory = new DefaultCoZeSessionFactory(cozeConfiguration);
     // 3. 开启会话
     this.coZeSession = factory.openSession();
     log.info("openAiSession:{}", coZeSession);
