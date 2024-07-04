@@ -20,10 +20,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 腾讯元器构建请求
+ * 构建请求
  *
  * @author Yang Shuai
- * Create By 2024/05/29
+ * Create By 2024/07/04
  */
 @Data
 @Builder

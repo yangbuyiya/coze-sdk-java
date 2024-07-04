@@ -20,7 +20,7 @@ import java.util.List;
  * 对话请求结果信息
  *
  * @author Yang Shuai
- * Create By 2024/05/29
+ * Create By 2024/07/04
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

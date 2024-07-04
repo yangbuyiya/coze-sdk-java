@@ -13,7 +13,7 @@ import java.io.Serializable;
  * 消息内容
  *
  * @author yangs
- * Create By 2024/05/29
+ * Create By 2024/07/04
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

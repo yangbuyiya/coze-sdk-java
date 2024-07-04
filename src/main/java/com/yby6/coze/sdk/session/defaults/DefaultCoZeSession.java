@@ -28,7 +28,7 @@ import com.fasterxml.jackson.core.*;
  * 默认的 CoZe 会话实现CoZeSession
  *
  * @author Yang Shuai
- * Create By 2024/05/29
+ * Create By 2024/07/04
  */
 public class DefaultCoZeSession implements CoZeSession {
 

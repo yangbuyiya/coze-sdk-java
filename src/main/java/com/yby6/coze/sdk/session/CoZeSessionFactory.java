@@ -13,7 +13,7 @@ package com.yby6.coze.sdk.session;
  * CoZe 会话工厂
  *
  * @author Yang Shuai
- * Create By 2024/05/29
+ * Create By 2024/07/04
  */
 public interface CoZeSessionFactory {
 
