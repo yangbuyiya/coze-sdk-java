@@ -1,17 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<!--
+  ~ 您可以更改此项目但请不要删除作者署名谢谢，否则根据中华人民共和国版权法进行处理.
+  ~ You may change this item but please do not remove the author's signature,
+  ~ otherwise it will be dealt with according to the Copyright Law of the People's Republic of China.
+  ~
+  ~ yangbuyi Copyright (c) https://yby6.com 2024.
+  -->
 
-    <groupId>com.yby6</groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.yby6.coze</groupId>
     <artifactId>coze-sdk-java</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+    <name>${project.artifactId}</name>
+    <description>
+        扣子智能体 API Java SDK 是对扣子智能体的API进行了封装，方便Java开发者接入系统调用。
+    </description>
+    <url>https://github.com/yangbuyiya/coze-sdk-java</url>
+
+
+    <issueManagement>
+        <system>Github Issue</system>
+        <url>https://github.com/yangbuyiya/coze-sdk-java/issues</url>
+    </issueManagement>
+
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>杨不易呀</name>
+            <email>1692700664@qq.com</email>
+            <url>https://yby6.com</url>
+            <organization>YangBuYi</organization>
+            <organizationUrl>https://bento.me/yby6</organizationUrl>
+        </developer>
+    </developers>
+
+    <!--源代码管理-->
+    <scm>
+        <connection>scm:git:https://github.com/yangbuyiya/coze-sdk-java.git</connection>
+        <developerConnection>scm:git:https://github.com/yangbuyiya/coze-sdk-java.git</developerConnection>
+        <url>https://github.com/yangbuyiya/coze-sdk-java.git</url>
+    </scm>
+    <!--授权 （这是Apache License-2 根据你自己的开源协议来）-->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <!-- SLF4J (Simple Logging Facade for Java) 是一个简单的日志门面，允许使用不同的日志框架 -->
+        <slf4j.version>2.0.6</slf4j.version>
+        <!-- Retrofit 是一个用于将HTTP API转换为Java接口的类型安全的HTTP客户端 -->
+        <retrofit2.version>2.9.0</retrofit2.version>
+        <!-- Jackson 是一个用于处理JSON数据的流行库，jackson-databind 是其核心组件之一 -->
+        <jackson.version>2.14.0-rc1</jackson.version>
+        <!-- Hutool 是一个小而全的Java工具类库，提供了许多实用的功能 -->
+        <hutool.version>5.8.25</hutool.version>
+        <!-- OkHttp 是一个高效的HTTP客户端，支持HTTP/2，OkHttp3 是其第三个主要版本 -->
+        <okhttp3.version>4.12.0</okhttp3.version>
+        <!-- JUnit 是一个流行的Java单元测试框架，用于编写和运行可重复的测试 -->
+        <junit.version>4.13.2</junit.version>
+        <!-- JetBrains Annotations 是用于Java代码中的注释库，提供了静态代码分析支持 -->
+        <annotations.version>23.0.0</annotations.version>
+        <!-- Lombok 是一个Java库，通过注解简化Java代码，减少样板代码 -->
+        <lombok.version>1.18.24</lombok.version>
     </properties>
+
+    <dependencies>
+        <!-- SLF4J API 提供日志记录的标准接口 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- SLF4J Simple 实现，将日志输出到标准输出 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- Jackson Databind 是处理 JSON 数据的核心库 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- Hutool 是一个包含各种实用工具类的库 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+        <!-- OkHttp SSE 支持服务端发送事件的 HTTP 客户端 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp-sse</artifactId>
+            <version>${okhttp3.version}</version>
+        </dependency>
+        <!-- OkHttp Logging Interceptor 用于记录 HTTP 请求和响应的详细信息 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>${okhttp3.version}</version>
+        </dependency>
+        <!-- Retrofit 是将 HTTP API 转换为 Java 接口的类型安全的 HTTP 客户端 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>${retrofit2.version}</version>
+        </dependency>
+        <!-- Retrofit Converter Jackson 将 JSON 转换为 Java 对象的 Retrofit 转换器 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>${retrofit2.version}</version>
+        </dependency>
+        <!-- Retrofit Adapter RxJava2 将 Retrofit 与 RxJava2 集成 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>adapter-rxjava2</artifactId>
+            <version>${retrofit2.version}</version>
+        </dependency>
+        <!-- JUnit 是一个流行的 Java 单元测试框架 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JetBrains Annotations 提供了用于代码注释的库，帮助静态代码分析 -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${annotations.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Lombok 是一个 Java 库，通过注解简化 Java 代码，减少样板代码 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <finalName>coze-sdk-java</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+            <!-- 中央仓库 -->
+            <!--sonatype发布插件-->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
+            <!-- 生成source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>oss</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 工程文件自动签名-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.3</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
