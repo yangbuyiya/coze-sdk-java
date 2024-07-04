@@ -62,7 +62,7 @@
         <!-- Hutool 是一个小而全的Java工具类库，提供了许多实用的功能 -->
         <hutool.version>5.8.25</hutool.version>
         <!-- OkHttp 是一个高效的HTTP客户端，支持HTTP/2，OkHttp3 是其第三个主要版本 -->
-        <okhttp3.version>4.12.0</okhttp3.version>
+        <okhttp3.version>3.14.9</okhttp3.version>
         <!-- JUnit 是一个流行的Java单元测试框架，用于编写和运行可重复的测试 -->
         <junit.version>4.13.2</junit.version>
         <!-- JetBrains Annotations 是用于Java代码中的注释库，提供了静态代码分析支持 -->
