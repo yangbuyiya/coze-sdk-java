@@ -69,7 +69,7 @@
 ### Gradle
 ```yaml
 
-implementation group: 'com.yby6.yuanqi', name: 'yuanqi-sdk-java', version: '${last}'
+implementation group: 'com.yby6.coze', name: 'coze-sdk-java', version: '${last}'
 
 ```
 
