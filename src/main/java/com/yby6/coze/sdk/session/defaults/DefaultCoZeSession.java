@@ -16,6 +16,8 @@ import com.yby6.coze.sdk.ICoZeApi;
 import com.yby6.coze.sdk.common.Constants;
 import com.yby6.coze.sdk.domain.CoZeCompletionRequest;
 import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowRequest;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowResponse;
 import com.yby6.coze.sdk.session.CoZeConfiguration;
 import com.yby6.coze.sdk.session.CoZeSession;
 import okhttp3.MediaType;
@@ -111,6 +113,18 @@ public class DefaultCoZeSession implements CoZeSession {
         // 返回结果信息；EventSource 对象可以取消应答
         return factory.newEventSource(request, eventSourceListener);
     }
+
+    /**
+     * 工作流
+     *
+     * @param cozeWorkflowRequest 工作流请求
+     * @return 应答结果
+     */
+    @Override
+    public CoZeWorkFlowResponse workflowCompletions(CoZeWorkFlowRequest cozeWorkflowRequest)  {
+        return this.cozeApi.workflowCompletions(cozeWorkflowRequest).blockingGet();
+    }
+
     
     
 }

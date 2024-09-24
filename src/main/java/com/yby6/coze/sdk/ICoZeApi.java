@@ -11,6 +11,8 @@ package com.yby6.coze.sdk;
 
 import com.yby6.coze.sdk.domain.CoZeCompletionRequest;
 import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowRequest;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowResponse;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -29,6 +31,11 @@ public interface ICoZeApi {
      * v1聊天完成
      */
     String v1_chat_completions = "v2/chat";
+
+    /**
+     * v1工作流
+     */
+    String v1_workflow_completions = "v1/workflow/run";
     
     /**
      * 问答智能体
@@ -38,6 +45,15 @@ public interface ICoZeApi {
      */
     @POST(v1_chat_completions)
     Single<CoZeCompletionResponse> completions(@Body CoZeCompletionRequest CoZeCompletionRequest);
+
+    /**
+     * 工作流
+     *
+     * @param CozeWorkFlowRequest 请求信息
+     * @return 应答结果
+     */
+    @POST(v1_workflow_completions)
+    Single<CoZeWorkFlowResponse> workflowCompletions(@Body CoZeWorkFlowRequest CozeWorkFlowRequest);
 
 
 }

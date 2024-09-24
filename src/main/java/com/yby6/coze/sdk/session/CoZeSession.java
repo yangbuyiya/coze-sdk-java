@@ -12,6 +12,8 @@ package com.yby6.coze.sdk.session;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.yby6.coze.sdk.domain.CoZeCompletionRequest;
 import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowRequest;
+import com.yby6.coze.sdk.domain.CoZeWorkFlowResponse;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
@@ -57,4 +59,12 @@ public interface CoZeSession {
      * @throws JsonProcessingException json处理异常
      */
     EventSource chatCompletions(String apiHostByUser, String apiKeyByUser, CoZeCompletionRequest cozeCompletionRequest, EventSourceListener eventSourceListener) throws JsonProcessingException;
+
+    /**
+     * 工作流
+     *
+     * @param cozeWorkflowRequest 工作流请求
+     * @return {@link CoZeCompletionResponse}
+     */
+    CoZeWorkFlowResponse workflowCompletions(CoZeWorkFlowRequest cozeWorkflowRequest) throws JsonProcessingException;
 }
