@@ -8,6 +8,7 @@
 
 package com.yby6.coze.sdk.domain;
 
+import cn.hutool.json.JSONObject;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -46,7 +47,7 @@ public class CoZeWorkFlowRequest implements Serializable {
      * 可选
      */
     @JsonProperty("parameters")
-    private String parameters;
+    private JSONObject parameters;
     
     /**
      * 需要关联的 Bot ID
