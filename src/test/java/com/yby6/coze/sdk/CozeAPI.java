@@ -9,12 +9,10 @@
 package com.yby6.coze.sdk;
 
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.yby6.coze.sdk.domain.CoZeCompletionEventResponse;
-import com.yby6.coze.sdk.domain.CoZeCompletionRequest;
-import com.yby6.coze.sdk.domain.CoZeCompletionResponse;
-import com.yby6.coze.sdk.domain.Message;
+import com.yby6.coze.sdk.domain.*;
 import com.yby6.coze.sdk.session.CoZeConfiguration;
 import com.yby6.coze.sdk.session.CoZeSession;
 import com.yby6.coze.sdk.session.defaults.DefaultCoZeSessionFactory;
@@ -143,6 +141,48 @@ public class CozeAPI {
         });
         // 等待
         new CountDownLatch(1).await();
+    }
+
+
+    /**
+     * 测试工作流远程调用
+     */
+    @Test
+    public void test_workFlow_run() throws JsonProcessingException {
+
+        // 1. 配置文件
+        CoZeConfiguration cozeConfiguration = new CoZeConfiguration();
+        cozeConfiguration.setApiHost("https://api.coze.cn/");
+        cozeConfiguration.setApiKey("Bearer pat_QuWfmGwBQA8BsMG7cXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        cozeConfiguration.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
+        // 2. 会话工厂
+        DefaultCoZeSessionFactory factory = new DefaultCoZeSessionFactory(cozeConfiguration);
+
+        // 3. 开启会话
+        coZeSession = factory.openSession();
+
+        // 4. 设置入参
+        String prompt = "a cat";
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.append("prompt", prompt);
+
+        // 5. 构建请求
+        CoZeWorkFlowRequest coZeWorkFlowRequest = new CoZeWorkFlowRequest();
+        // 设置工作流ID
+        coZeWorkFlowRequest.setWorkflowId("7417847815457701923");
+        // 设置参数
+        coZeWorkFlowRequest.setParameters(jsonObj);
+
+        // 6. 发起请求
+        CoZeWorkFlowResponse coZeWorkFlowResponse = coZeSession.workflowCompletions(coZeWorkFlowRequest);
+
+        // 7. 解析结果
+        log.info("Code:{}", coZeWorkFlowResponse.getCode());
+        log.info("Msg:{}", coZeWorkFlowResponse.getMsg());
+        log.info("Data:{}", coZeWorkFlowResponse.getData());
+        log.info("Debug:{}", coZeWorkFlowResponse.getDebug_url());
+
     }
     
     
