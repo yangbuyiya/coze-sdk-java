@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yby6.coze</groupId>
     <artifactId>coze-sdk-java</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>${project.artifactId}</name>
     <description>
         扣子智能体 API Java SDK 是对扣子智能体的API进行了封装，方便Java开发者接入系统调用。

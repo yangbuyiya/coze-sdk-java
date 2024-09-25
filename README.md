@@ -45,7 +45,7 @@
 <h1 align="center">
     <img src="img/coze.svg" width="128" />
     <br />
-	<strong>COZE-SDK-JAVA v1.0.1</strong>
+	<strong>COZE-SDK-JAVA v1.0.2</strong>
 </h1>
 <h3 align="center">
      扣子智能体 API Java SDK 是对扣子智能体的API进行了封装，方便Java开发者接入系统调用。
